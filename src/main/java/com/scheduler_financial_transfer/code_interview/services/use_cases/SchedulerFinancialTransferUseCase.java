@@ -1,0 +1,7 @@
+package com.scheduler_financial_transfer.code_interview.services.use_cases;
+
+import com.scheduler_financial_transfer.code_interview.controller.request.SchedulerFinancialTransferRequestDTO;
+
+public interface SchedulerFinancialTransferUseCase {
+    SchedulerFinancialTransferRequestDTO schedule(SchedulerFinancialTransferRequestDTO schedule);
+}
