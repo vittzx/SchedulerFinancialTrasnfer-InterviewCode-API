@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /scheduler
+
+
+spring:
+  application:
+    name: SchedulerFinancialTransfer
+  jpa:
+    show-sql: false
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+
+
+logging:
+  level:
+    com.scheduler_financial_transfer.code_interview: debug
