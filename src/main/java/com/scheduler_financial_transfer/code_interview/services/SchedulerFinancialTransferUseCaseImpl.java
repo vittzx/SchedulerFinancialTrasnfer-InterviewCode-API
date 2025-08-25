@@ -1,8 +1,10 @@
 package com.scheduler_financial_transfer.code_interview.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.scheduler_financial_transfer.code_interview.controller.request.SchedulerFinancialTransferRequestDTO;
 import com.scheduler_financial_transfer.code_interview.model.scheduler.ScheduleFinancialTransfer;
 import com.scheduler_financial_transfer.code_interview.model.scheduler.SchedulerFinancialTransferStatus;
+import com.scheduler_financial_transfer.code_interview.queues.producer.use_case.SchedulerFinancialTransferProducerUseCase;
 import com.scheduler_financial_transfer.code_interview.services.validations.use_cases.SchedulerBusinessRulesValidation;
 import com.scheduler_financial_transfer.code_interview.services.use_cases.SchedulerFinancialTransferUseCase;
 import com.scheduler_financial_transfer.code_interview.services.validations.use_cases.SchedulerValidationCreationFields;
@@ -19,8 +21,9 @@ public class SchedulerFinancialTransferUseCaseImpl implements SchedulerFinancial
 
     private final SchedulerValidationCreationFields creationFieldsValidation;
     private final SchedulerBusinessRulesValidation businessRulesValidation;
+    private final SchedulerFinancialTransferProducerUseCase sendNewSchedule;
     @Override
-    public SchedulerFinancialTransferRequestDTO schedule(SchedulerFinancialTransferRequestDTO dto) {
+    public SchedulerFinancialTransferRequestDTO schedule(SchedulerFinancialTransferRequestDTO dto){
         log.info("Creating schedule {}", dto);
 
         ScheduleFinancialTransfer schedule = toSchedulerModel(dto);
@@ -34,10 +37,23 @@ public class SchedulerFinancialTransferUseCaseImpl implements SchedulerFinancial
                 schedule
         );
 
+        sendNewScheduleMessage(schedule);
+
         return toSchedulePresentationDTO(schedule);
     }
 
     private void setInitialScheduleFields(ScheduleFinancialTransfer schedule){
         schedule.setStatus(SchedulerFinancialTransferStatus.CREATED);
+    }
+
+    private void sendNewScheduleMessage(ScheduleFinancialTransfer schedule){
+
+        try {
+            sendNewSchedule.sendNewScheduleMessage(
+                    schedule
+            );
+        }catch (Exception e){
+            log.error("ERROR: Error trying to send new message about schedule: " + e.getMessage());
+        }
     }
 }

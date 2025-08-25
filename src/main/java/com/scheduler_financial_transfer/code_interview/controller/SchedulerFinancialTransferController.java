@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/v1/schedule")
 public class SchedulerFinancialTransferController {
 
-        private final SchedulerFinancialTransferUseCase scheduleUseCase;
+    private final SchedulerFinancialTransferUseCase scheduleUseCase;
     @PostMapping
     public ResponseEntity<SchedulerFinancialTransferRequestDTO> scheduleTransfer(
             @RequestBody SchedulerFinancialTransferRequestDTO body,

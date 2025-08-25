@@ -1,8 +1,7 @@
 server:
-  port: 8080
+  port: 9090
   servlet:
     context-path: /scheduler-financial-transfer
-
 
 spring:
   application:
@@ -16,7 +15,24 @@ spring:
     url: jdbc:h2:mem:test
     username: sa
     password:
+  rabbitmq:
+    password: guest
+    username: guest
 
+
+rabbit-mq:
+  scheduler-new:
+    queue: scheduler-new-financial-transfer
+    exchange: scheduler-new-financial-transfer-exchange
+    routing-key: scheduler-new-financial-transfer-routing-key
+  scheduler-success:
+    queue: scheduler-success-financial-transfer
+    exchange: scheduler-success-financial-transfer-exchange
+    routing-key: scheduler-success-financial-transfer-routing-key
+  scheduler-fail:
+    queue: scheduler-fail-financial-transfer
+    exchange: scheduler-fail-financial-transfer-exchange
+    routing-key: scheduler-fail-financial-transfer-routing-key
 
 logging:
   level:
