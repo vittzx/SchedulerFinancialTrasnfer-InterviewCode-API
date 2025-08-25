@@ -24,7 +24,7 @@ public class SchedulerFinancialTransferController {
             HttpServletRequest request
     ){
         body.setOriginAccountId(originAccountId);
-        body.setOriginAccountId(destinationAccountId);
+        body.setDestinationAccountId(destinationAccountId);
         log.debug("POST - /v1/schedule body: {}", body);
         return ResponseEntity.ok(
                 scheduleUseCase.schedule(body)
