@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.scheduler_financial_transfer.code_interview.model.scheduler.ScheduleFinancialTransfer;
 import com.scheduler_financial_transfer.code_interview.queues.producer.use_case.SchedulerFinancialTransferProducerUseCase;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class SchedulerFinancialTransferProducerImpl implements SchedulerFinancialTransferProducerUseCase {
-    private AmqpTemplate amqpTemplate;
+    private final AmqpTemplate amqpTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${rabbit-mq.scheduler-new.exchange}")

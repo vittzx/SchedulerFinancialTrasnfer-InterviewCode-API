@@ -22,15 +22,15 @@ spring:
 
 rabbit-mq:
   scheduler-new:
-    queue: scheduler-new-financial-transfer
+    queue: scheduler-new-financial-transfer-queue
     exchange: scheduler-new-financial-transfer-exchange
     routing-key: scheduler-new-financial-transfer-routing-key
   scheduler-success:
-    queue: scheduler-success-financial-transfer
+    queue: scheduler-success-financial-transfer-queue
     exchange: scheduler-success-financial-transfer-exchange
     routing-key: scheduler-success-financial-transfer-routing-key
   scheduler-fail:
-    queue: scheduler-fail-financial-transfer
+    queue: scheduler-fail-financial-transfer-queue
     exchange: scheduler-fail-financial-transfer-exchange
     routing-key: scheduler-fail-financial-transfer-routing-key
 
