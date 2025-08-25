@@ -25,21 +25,24 @@ public class SchedulerValidationCreationFieldsImpl implements SchedulerValidatio
         if(schedule.getOriginAccountId() == null || schedule.getOriginAccountId().isEmpty())
             errors.add("originAccountId is null or empty");
 
-
         if(schedule.getDestinationAccountId() == null || schedule.getDestinationAccountId().isEmpty())
             errors.add("destinationAccountId is null or empty");
 
-        if(schedule.getDateTransfer() == null)
-            errors.add("transfer date is null");
-        else{
-          try {
-              DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
-              LocalDate.parse(schedule.getDateTransfer(), formatter);
+        if(schedule.getDateSchedule() == null)
+            errors.add("schedule date is null");
 
-          }catch (Exception e){
-              errors.add("transfer date format is invalid, please follow dd/MM/yyy format. Date passed:");
-          }
+        if(schedule.getTransferValue() == null){
+            errors.add("transfer value is null");
         }
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate.parse(schedule.getDateSchedule(), formatter);
+
+        }catch (Exception e) {
+            errors.add("schedule date format is invalid, please follow dd/MM/yyy format. Date passed:");
+        }
+        checkErrorList(errors);
 
     }
 
