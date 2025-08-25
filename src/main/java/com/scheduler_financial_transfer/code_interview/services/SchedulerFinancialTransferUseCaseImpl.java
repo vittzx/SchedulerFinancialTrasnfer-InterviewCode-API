@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import static com.scheduler_financial_transfer.code_interview.mapper.MapperScheduler.toSchedulerModel;
+import static com.scheduler_financial_transfer.code_interview.mapper.MapperScheduler.*;
 
 @RequiredArgsConstructor
 @Service
@@ -34,9 +34,7 @@ public class SchedulerFinancialTransferUseCaseImpl implements SchedulerFinancial
                 schedule
         );
 
-
-
-        return null;
+        return toSchedulePresentationDTO(schedule);
     }
 
     private void setInitialScheduleFields(ScheduleFinancialTransfer schedule){

@@ -20,12 +20,22 @@ public class MapperScheduler {
                 .build();
     }
 
-    public static SchedulerFinancialTransferRequestDTO toSchedulerDTO(SchedulerFinancialTransferRequestDTO scheduler){
+    public static SchedulerFinancialTransferRequestDTO toSchedulerDTO(ScheduleFinancialTransfer scheduler){
         return SchedulerFinancialTransferRequestDTO
                 .builder()
                 .id(scheduler.getId())
                 .originAccountId(scheduler.getOriginAccountId())
                 .destinationAccountId(scheduler.getDestinationAccountId())
+                .transferValue(scheduler.getTransferValue())
+                .status(scheduler.getStatus())
+                .dateSchedule(scheduler.getDateSchedule())
+                .dateTransfer(scheduler.getDateTransfer())
+                .build();
+    }
+
+    public static SchedulerFinancialTransferRequestDTO toSchedulePresentationDTO(ScheduleFinancialTransfer scheduler){
+        return SchedulerFinancialTransferRequestDTO
+                .builder()
                 .transferValue(scheduler.getTransferValue())
                 .status(scheduler.getStatus())
                 .dateSchedule(scheduler.getDateSchedule())
