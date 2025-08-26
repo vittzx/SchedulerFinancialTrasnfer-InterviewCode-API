@@ -20,6 +20,6 @@ public class SchedulerFinancialTransferConsumerDTO {
     private String destinationAccountId;
     private Double transferValue;
     private String dateTransfer;
-    private SchedulerFinancialTransferStatus status;
+    private String status;
     private String dateSchedule;
 }
