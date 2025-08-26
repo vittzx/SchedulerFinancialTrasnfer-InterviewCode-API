@@ -30,7 +30,7 @@ public class MapperScheduler {
                 .originAccountId(dto.getOriginAccountId())
                 .destinationAccountId(dto.getDestinationAccountId())
                 .transferValue(dto.getTransferValue())
-                .status(dto.getStatus())
+                .status(SchedulerFinancialTransferStatus.valueOf(dto.getStatus()))
                 .dateSchedule(dto.getDateSchedule())
                 .dateTransfer(dto.getDateTransfer())
                 .build();
