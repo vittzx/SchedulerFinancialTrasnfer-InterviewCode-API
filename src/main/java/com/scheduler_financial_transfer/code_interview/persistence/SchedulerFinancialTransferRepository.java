@@ -1,0 +1,8 @@
+package com.scheduler_financial_transfer.code_interview.persistence;
+
+import com.scheduler_financial_transfer.code_interview.model.scheduler.ScheduleFinancialTransfer;
+import com.scheduler_financial_transfer.code_interview.persistence.entities.SchedulerFinancialTransferEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SchedulerFinancialTransferRepository extends JpaRepository<SchedulerFinancialTransferEntity, Long> {
+}
