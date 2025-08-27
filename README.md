@@ -34,11 +34,10 @@ curl --location 'localhost:9090/scheduler-financial-transfer/v1/schedule' \
 
 Porém, alguns padrões foram seguidos para manter um bom código, seguindo o Clean Code (Uncle Bob) e os princípios do SOLID e DRY
 
-- `Simulação de Regras de Negócio` -> As regras de negócio não foram implamentadas, porem seria ideal colocar algumas aqui de exemplo como:
+- `Simulação de Regras de Negócio` -> As regras de negócio foram implementadas de forma ficticia:
     - Valor da Transacao ser maior que 0.0 reais
     - Data de agendamento não pode ser no passado
     - Destination e Account ID não estar bloquada por serviço externo
-    - Usuario ter login e ser persistido no agendamento (inserir quem fez o agendamento)
 
 - `Arquitetura voltada a Microsservico` -> Fiz esse projeto pensando em uma arquitetura voltada a microsservico e fluxos assincronos. Por isso não há uma enorme complexidade para o serviço entender e ser muito robusto à outros fluxos e arquiteturas
 
