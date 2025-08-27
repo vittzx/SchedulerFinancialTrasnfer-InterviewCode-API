@@ -17,11 +17,14 @@ Explicando as decisões tomadas para a entrevista técnica de código - Vitor Co
 curl --location 'localhost:9090/scheduler-financial-transfer/v1/schedule' \
 --header 'originAccountId: 1' \
 --header 'destinationAccountId: 2' \
+--header 'x-permission-x: INTERNAL_SCHEDULER' \
+--header 'login: [seu_login]' \
 --header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=86599D4B22CFB873AAB7BD36DC0F7945' \
 --data '{
-    "dateSchedule": "30/11/2025",
+    "dateSchedule": "27/08/2025",
     "transferValue": 10.11
-}'
+}''
 
 ```
 
@@ -37,7 +40,8 @@ Porém, alguns padrões foram seguidos para manter um bom código, seguindo o Cl
 - `Simulação de Regras de Negócio` -> As regras de negócio foram implementadas de forma ficticia:
     - Valor da Transacao ser maior que 0.0 reais
     - Data de agendamento não pode ser no passado
-    - Destination e Account ID não estar bloquada por serviço externo
+    - Destination e Account ID não estar bloquada por serviço externo (simulando retorno com um valor mockado 'true')
+  
 
 - `Arquitetura voltada a Microsservico` -> Fiz esse projeto pensando em uma arquitetura voltada a microsservico e fluxos assincronos. Por isso não há uma enorme complexidade para o serviço entender e ser muito robusto à outros fluxos e arquiteturas
 
