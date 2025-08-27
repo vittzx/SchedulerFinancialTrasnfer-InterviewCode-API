@@ -5,6 +5,7 @@ import com.scheduler_financial_transfer.code_interview.services.use_cases.Schedu
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ public class SchedulerFinancialTransferController {
 
     private final SchedulerFinancialTransferUseCase scheduleUseCase;
     @PostMapping
+    @Secured("ROLE_INTERNAL_SCHEDULER")
     public ResponseEntity<SchedulerFinancialTransferRequestDTO> scheduleTransfer(
             @RequestBody SchedulerFinancialTransferRequestDTO body,
             @RequestHeader(required = true) String originAccountId,
