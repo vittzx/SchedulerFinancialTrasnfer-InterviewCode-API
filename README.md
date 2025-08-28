@@ -15,16 +15,16 @@ Explicando as decisões tomadas para a entrevista técnica de código - Vitor Co
 
 ```
 curl --location 'localhost:9090/scheduler-financial-transfer/v1/schedule' \
---header 'originAccountId: 1' \
---header 'destinationAccountId: 2' \
+--header 'origin-account-id: 1' \
+--header 'destination-account-id: 2' \
 --header 'x-permission-x: INTERNAL_SCHEDULER' \
---header 'login: [seu_login]' \
+--header 'login: cosso' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JSESSIONID=86599D4B22CFB873AAB7BD36DC0F7945' \
+--header 'Cookie: JSESSIONID=EE6EE1895C442A9185913A4113A5BC27' \
 --data '{
-    "dateSchedule": "27/08/2025",
+    "dateSchedule": "10/10/2020",
     "transferValue": 10.11
-}''
+}'
 
 ```
 
@@ -49,5 +49,4 @@ Porém, alguns padrões foram seguidos para manter um bom código, seguindo o Cl
 Isso serve para debug. 
 
 
-- `OBSERVAÇÕES` -> Algumas coisas ainda não estão totalmente implementadas, como um EXECEPTION HANDLER, mensagens de erros no message.properties, um arquivo yml para cada ambiente ou até mesmo algumas tratativas de seguranca (Spring Security) devido ao tempo de entrega + trabalho + faculdade, quero passa uma visão geral que tenho conhecimento e garantia de qualidade para entregas do dia-a-dia, como teste unitários e etc.
-Alguns pontos serão implementados após a entrega, devido ao curto período de tempo.
+- `OBSERVAÇÕES` -> Não consegui realizar uma requisição do front p/ o back end, mesmo desabilitando o CORS no Spring Security.
