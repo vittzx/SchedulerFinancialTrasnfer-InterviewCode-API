@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
+import java.util.Locale;
+
 @Configuration
 public class MessageConfig {
 
@@ -15,10 +17,12 @@ public class MessageConfig {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages");
         messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setFallbackToSystemLocale(false);
+
         return messageSource;
     }
 
     public String getMessage(String code, Object... args){
-        return this.messageSource().getMessage(code, args, LocaleContextHolder.getLocale());
+        return this.messageSource().getMessage(code, args, Locale.ENGLISH);
     }
 }
