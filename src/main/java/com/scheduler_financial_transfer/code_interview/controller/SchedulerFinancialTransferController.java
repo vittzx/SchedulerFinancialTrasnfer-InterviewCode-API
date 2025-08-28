@@ -4,6 +4,7 @@ import com.scheduler_financial_transfer.code_interview.controller.request.Schedu
 import com.scheduler_financial_transfer.code_interview.services.use_cases.SchedulerFinancialTransferUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -28,9 +29,7 @@ public class SchedulerFinancialTransferController {
         body.setOriginAccountId(originAccountId);
         body.setDestinationAccountId(destinationAccountId);
         log.debug("POST - /v1/schedule body: {}", body);
-        return ResponseEntity.ok(
-                scheduleUseCase.schedule(body)
-        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(scheduleUseCase.schedule(body));
     }
 
 }
