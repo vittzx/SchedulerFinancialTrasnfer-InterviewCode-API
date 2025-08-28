@@ -15,16 +15,16 @@ Explicando as decisões tomadas para a entrevista técnica de código - Vitor Co
 
 ```
 curl --location 'localhost:9090/scheduler-financial-transfer/v1/schedule' \
---header 'originAccountId: 1' \
---header 'destinationAccountId: 2' \
+--header 'origin-account-id: 1' \
+--header 'destination-account-id;' \
 --header 'x-permission-x: INTERNAL_SCHEDULER' \
---header 'login: [seu_login]' \
+--header 'login: cosso' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JSESSIONID=86599D4B22CFB873AAB7BD36DC0F7945' \
+--header 'Cookie: JSESSIONID=758F8D59AAE46E85B805C0D8FFFED7B7' \
 --data '{
-    "dateSchedule": "27/08/2025",
+    "dateSchedule": null,
     "transferValue": 10.11
-}''
+}'
 
 ```
 

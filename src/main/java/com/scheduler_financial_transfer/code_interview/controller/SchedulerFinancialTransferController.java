@@ -21,8 +21,8 @@ public class SchedulerFinancialTransferController {
     @Secured("ROLE_INTERNAL_SCHEDULER")
     public ResponseEntity<SchedulerFinancialTransferRequestDTO> scheduleTransfer(
             @RequestBody SchedulerFinancialTransferRequestDTO body,
-            @RequestHeader(required = true) String originAccountId,
-            @RequestHeader(required = true) String destinationAccountId,
+            @RequestHeader(name = "origin-account-id", required = false) String originAccountId,
+            @RequestHeader(name ="destination-account-id",required = false) String destinationAccountId,
             HttpServletRequest request
     ){
         body.setOriginAccountId(originAccountId);
