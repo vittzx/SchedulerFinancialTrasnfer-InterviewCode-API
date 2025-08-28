@@ -70,7 +70,6 @@ curl --location 'localhost:9090/scheduler-financial-transfer/v1/schedule' \
 
 
 - `Arquitetura MVC` -> Devido a complexidade do projeto, a arquitetura MVC para esse padrão está muito bem implementada, não havendo uma forte necessidade de segregação de fases como na Arquitetura Hexagonal/Clean Architecture
-
 Porém, alguns padrões foram seguidos para manter um bom código, seguindo o Clean Code (Uncle Bob) e os princípios do SOLID e DRY
 
 - `Simulação de Regras de Negócio` -> As regras de negócio foram implementadas de forma ficticia:
@@ -84,5 +83,6 @@ Porém, alguns padrões foram seguidos para manter um bom código, seguindo o Cl
 - `Historico de Transacao/Agendamento` -> Para melhor análise do agendamento da transcao, toda a alteracao relacionado a ela, é persistida no banco de dados e uma nova linha na tabela de historico para indicar o que aconteceu com um status.
 Isso serve para debug. 
 
-
+- `Sem Design Patterns` -> Para evitar complexidade extra em um cenário muito simples, decidi não implementar nenhum tipo de decorator, factory ou algo do tipo
+ 
 - `OBSERVAÇÕES` -> Não consegui realizar uma requisição do front p/ o back end, mesmo desabilitando o CORS no Spring Security.
