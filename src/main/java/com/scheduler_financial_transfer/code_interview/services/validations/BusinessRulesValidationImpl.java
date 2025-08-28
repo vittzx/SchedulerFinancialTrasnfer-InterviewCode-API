@@ -1,8 +1,11 @@
 package com.scheduler_financial_transfer.code_interview.services.validations;
 
+import com.scheduler_financial_transfer.code_interview.exceptions.BusinessRulesException;
+import com.scheduler_financial_transfer.code_interview.exceptions.ExceptionResponse;
 import com.scheduler_financial_transfer.code_interview.external_services.use_cases.ValidateAccountService;
 import com.scheduler_financial_transfer.code_interview.model.scheduler.ScheduleFinancialTransfer;
 import com.scheduler_financial_transfer.code_interview.services.validations.use_cases.SchedulerBusinessRulesValidation;
+import com.scheduler_financial_transfer.code_interview.utils.MessageConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,7 +30,11 @@ public class BusinessRulesValidationImpl implements SchedulerBusinessRulesValida
 
     private void validateTransferValue(Double transferValue) {
         if(transferValue < 0)
-            throw new IllegalArgumentException("Transfer value is negative.");
+            throw new BusinessRulesException(
+                    new ExceptionResponse(
+                            MessageConstants.TRANSFER_VALUE_NEGATIVE
+                    )
+            );
     }
 
     private void validateScheduleDate(String dateSchedule) {
@@ -35,17 +42,26 @@ public class BusinessRulesValidationImpl implements SchedulerBusinessRulesValida
         LocalDate dateTransferLocalDate = LocalDate.parse(dateSchedule, formatter);
 
         if(dateTransferLocalDate.isBefore(LocalDate.now())){
-            throw new IllegalArgumentException("Schedule is in the past.");
+            throw new BusinessRulesException(
+                    new ExceptionResponse(
+                            MessageConstants.SCHEDULE_DATE_IN_PAST
+                            ,dateTransferLocalDate
+                    )
+            );
         }
     }
 
     private void validateAccountsStatus(String originAccountId, String destinationAccountId) {
         if(isAccountIdInvalid(originAccountId)){
-            throw new IllegalArgumentException("Origin account id is invalid.");
+            throw new BusinessRulesException(
+                    new ExceptionResponse(MessageConstants.ORIGIN_ACCOUNT_INVALIDATED)
+            );
         }
 
         if(isAccountIdInvalid(destinationAccountId)){
-            throw new IllegalArgumentException("Destination account id is invalid.");
+            throw new BusinessRulesException(
+                    new ExceptionResponse(MessageConstants.DESTINATION_ACCOUNT_INVALIDATED)
+            );
         }
     }
 
